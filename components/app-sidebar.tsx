@@ -8,6 +8,7 @@ import {
   Command,
   Frame,
   GalleryVerticalEnd,
+  LayoutDashboard,
   Map,
   PieChart,
   Settings2,
@@ -46,6 +47,11 @@ const teams = [
 ];
 const navMain = [
   {
+    title: "Dashboard",
+    url: "/dashboard",
+    icon: LayoutDashboard,
+  },
+  {
     title: "Playground",
     url: "#",
     icon: SquareTerminal,
@@ -78,15 +84,9 @@ const navMain = [
     ],
   },
   {
-    title: "Settings",
-    url: "#",
+    title: "Setting",
+    url: "/setting",
     icon: Settings2,
-    items: [
-      { title: "General", url: "#" },
-      { title: "Team", url: "#" },
-      { title: "Billing", url: "#" },
-      { title: "Limits", url: "#" },
-    ],
   },
 ];
 const projects = [
@@ -99,7 +99,6 @@ export function AppSidebar({
   user,
   ...props
 }: React.ComponentProps<typeof Sidebar> & { user?: any }) {
-
   const displayUser = user
     ? {
         name: user.user_metadata?.name || user.email,
