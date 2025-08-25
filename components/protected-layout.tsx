@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { createClient} from "@/lib/supabase/server";
 import { AppSidebar } from "@/components/app-sidebar";
+import type { AppSidebarUser } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -25,9 +26,14 @@ export default async function ProtectedLayout({
   if (error || !data?.user) {
     redirect("/auth/login");
   }
+  // Ensure we have a user with an email before passing to AppSidebar
+  if (!data.user.email) {
+    redirect("/auth/login");
+  }
+
   return (
     <SidebarProvider>
-      <AppSidebar user={data.user} />
+      <AppSidebar user={data.user as AppSidebarUser} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 justify-between px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2">
