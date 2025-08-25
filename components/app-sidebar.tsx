@@ -6,17 +6,14 @@ import {
   BookOpen,
   Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
   LayoutDashboard,
-  Map,
-  PieChart,
   Settings2,
   SquareTerminal,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
+// import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
 import {
@@ -95,10 +92,18 @@ const navMain = [
 //   { name: "Travel", url: "#", icon: Map },
 // ];
 
+export type AppSidebarUser = {
+  user_metadata?: {
+    name?: string;
+    avatar_url?: string;
+  };
+  email: string;
+};
+
 export function AppSidebar({
   user,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { user?: any }) {
+}: React.ComponentProps<typeof Sidebar> & { user?: AppSidebarUser }) {
   const displayUser = user
     ? {
         name: user.user_metadata?.name || user.email,
