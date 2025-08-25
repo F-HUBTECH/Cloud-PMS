@@ -57,7 +57,7 @@ const navMain = [
     icon: SquareTerminal,
     isActive: true,
     items: [
-      { title: "History", url: "#" },
+      { title: "History", url: "/history" },
       { title: "Starred", url: "#" },
       { title: "Settings", url: "#" },
     ],
@@ -89,11 +89,11 @@ const navMain = [
     icon: Settings2,
   },
 ];
-const projects = [
-  { name: "Design Engineering", url: "#", icon: Frame },
-  { name: "Sales & Marketing", url: "#", icon: PieChart },
-  { name: "Travel", url: "#", icon: Map },
-];
+// const projects = [
+//   { name: "Design Engineering", url: "#", icon: Frame },
+//   { name: "Sales & Marketing", url: "#", icon: PieChart },
+//   { name: "Travel", url: "#", icon: Map },
+// ];
 
 export function AppSidebar({
   user,
@@ -117,7 +117,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navMain} />
-        <NavProjects projects={projects} />
+        {/* <NavProjects projects={projects} /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={displayUser} />
