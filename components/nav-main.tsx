@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { ChevronRight, type LucideIcon } from "lucide-react"
 
 import {
@@ -10,9 +11,9 @@ import {
 } from "@/components/ui/collapsible"
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu_"
 import { useSidebar } from "@/components/ui/sidebar"
 import {
@@ -33,24 +34,33 @@ export function NavMain({
     title: string
     url: string
     icon?: LucideIcon
-    isActive?: boolean
     items?: {
       title: string
       url: string
     }[]
   }[]
 }) {
-  const { state } = useSidebar();
+  const { state } = useSidebar()
+  const pathname = usePathname()
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
-          item.items && item.items.length > 0 ? (
+        {items.map((item) => {
+          const isActive =
+            item.items && item.items.length > 0
+              ? item.items.some((subItem) => pathname === subItem.url)
+              : pathname === item.url
+
+          return item.items && item.items.length > 0 ? (
             state === "collapsed" ? (
               <DropdownMenu key={item.title}>
                 <DropdownMenuTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title}>
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    isActive={isActive}
+                  >
                     {item.icon && <item.icon />}
                     <span className="sr-only">{item.title}</span>
                   </SidebarMenuButton>
@@ -69,12 +79,15 @@ export function NavMain({
               <Collapsible
                 key={item.title}
                 asChild
-                defaultOpen={item.isActive}
+                defaultOpen={isActive}
                 className="group/collapsible"
               >
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton tooltip={item.title}>
+                    <SidebarMenuButton
+                      tooltip={item.title}
+                      isActive={isActive}
+                    >
                       {item.icon && <item.icon />}
                       <span>{item.title}</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
@@ -84,7 +97,10 @@ export function NavMain({
                     <SidebarMenuSub>
                       {item.items.map((subItem) => (
                         <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
+                          <SidebarMenuSubButton
+                            asChild
+                            isActive={pathname === subItem.url}
+                          >
                             <Link href={subItem.url}>
                               <span>{subItem.title}</span>
                             </Link>
@@ -98,7 +114,11 @@ export function NavMain({
             )
           ) : (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild tooltip={item.title}>
+              <SidebarMenuButton
+                asChild
+                tooltip={item.title}
+                isActive={isActive}
+              >
                 <Link href={item.url}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
@@ -106,7 +126,7 @@ export function NavMain({
               </SidebarMenuButton>
             </SidebarMenuItem>
           )
-        ))}
+        })}
       </SidebarMenu>
     </SidebarGroup>
   )
