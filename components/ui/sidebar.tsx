@@ -73,12 +73,14 @@ const SidebarProvider = React.forwardRef<
     },
     ref
   ) => {
+
     const isMobile = useIsMobile()
     const [openMobile, setOpenMobile] = React.useState(false)
 
-    // This is the internal state of the sidebar.
-    // We use openProp and setOpenProp for control from outside the component.
-    const [_open, _setOpen] = React.useState(defaultOpen)
+    // Internal state for sidebar open/collapsed
+  // SSR-safe: initial state always defaultOpen, sync from cookie after hydration
+  const [_open, _setOpen] = React.useState(defaultOpen)
+  const [isHydrated, setIsHydrated] = React.useState(false)
     const open = openProp ?? _open
     const setOpen = React.useCallback(
       (value: boolean | ((value: boolean) => boolean)) => {
@@ -88,12 +90,24 @@ const SidebarProvider = React.forwardRef<
         } else {
           _setOpen(openState)
         }
-
-        // This sets the cookie to keep the sidebar state.
+        // Save state to cookie
         document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
       },
       [setOpenProp, open]
     )
+
+    // Hydration-safe: sync sidebar state from cookie after mount
+    React.useEffect(() => {
+      setIsHydrated(true);
+      if (typeof window === "undefined") return;
+      const match = document.cookie.match(new RegExp(`(?:^|; )${SIDEBAR_COOKIE_NAME}=([^;]*)`));
+      if (match) {
+        const cookieValue = match[1];
+        if (cookieValue === "true" || cookieValue === "false") {
+          _setOpen(cookieValue === "true");
+        }
+      }
+    }, []);
 
     // Helper to toggle the sidebar.
     const toggleSidebar = React.useCallback(() => {
@@ -135,6 +149,8 @@ const SidebarProvider = React.forwardRef<
       [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
     )
 
+    // Prevent hydration mismatch: don't render sidebar until hydrated
+    if (!isHydrated) return null;
     return (
       <SidebarContext.Provider value={contextValue}>
         <TooltipProvider delayDuration={0}>
