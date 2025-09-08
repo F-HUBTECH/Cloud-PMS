@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu_"
 import { useSidebar } from "@/components/ui/sidebar"
+import { useIsMobile } from "@/hooks/use-mobile"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -41,6 +42,7 @@ export function NavMain({
   }[]
 }) {
   const { state } = useSidebar()
+  const isMobile = useIsMobile()
   const pathname = usePathname()
 
   return (
@@ -53,8 +55,11 @@ export function NavMain({
               ? item.items.some((subItem) => pathname === subItem.url)
               : pathname === item.url
 
+          // ถ้าเป็น mobile ให้ render expanded เสมอ
+          const forceExpanded = isMobile
+
           return item.items && item.items.length > 0 ? (
-            state === "collapsed" ? (
+            !forceExpanded && state === "collapsed" ? (
               <DropdownMenu key={item.title}>
                 <DropdownMenuTrigger asChild>
                   <SidebarMenuButton
