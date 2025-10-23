@@ -46,11 +46,28 @@ export function Dashboard() {
     ];
 
     const roomStatus = [
-        { status: 'Occupied', count: 85, color: 'bg-emerald-500' },
-        { status: 'Available', count: 25, color: 'bg-indigo-500' },
-        { status: 'Maintenance', count: 7, color: 'bg-amber-500' },
-        { status: 'Reserved', count: 3, color: 'bg-rose-500' },
+        { status: 'Occupied', count: 85, color: 'bg-blue-400' },
+        { status: 'Available', count: 25, color: 'bg-green-400' },
+        { status: 'Maintenance', count: 7, color: 'bg-amber-400' },
+        { status: 'Reserved', count: 3, color: 'bg-purple-400' },
     ];
+
+    const getStatusBadge = (status: string) => {
+        switch (status) {
+            case 'checked-in':
+                return 'bg-blue-100 text-blue-700 border border-blue-200';
+            case 'confirmed':
+                return 'bg-green-100 text-green-700 border border-green-200';
+            case 'pending':
+                return 'bg-amber-100 text-amber-700 border border-amber-200';
+            case 'checked-out':
+                return 'bg-slate-100 text-slate-700 border border-slate-200';
+            case 'cancelled':
+                return 'bg-red-100 text-red-700 border border-red-200';
+            default:
+                return 'bg-gray-100 text-gray-700 border border-gray-200';
+        }
+    };
 
     return (
         <div className="space-y-6">
@@ -59,7 +76,7 @@ export function Dashboard() {
                 {stats.map((stat) => {
                     const Icon = stat.icon;
                     return (
-                        <Card key={stat.title} className={`border-none ${stat.bg} shadow-lg`}>
+                        <Card key={stat.title} className={`${stat.bg} dark:bg-accent/30 border-border shadow-lg`}>
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
                                 <CardTitle className="text-sm text-foreground">{stat.title}</CardTitle>
                                 <div className={`rounded-lg ${stat.color} p-2`}>
@@ -84,7 +101,7 @@ export function Dashboard() {
                     <CardContent>
                         <div className="space-y-4">
                             {roomStatus.map((room) => (
-                                <div key={room.status} className="flex items-center justify-between rounded-lg bg-accent/20 p-3 transition-all hover:shadow-md">
+                                <div key={room.status} className="flex items-center justify-between rounded-lg bg-accent/10 p-3 transition-all hover:shadow-md">
                                     <div className="flex items-center gap-3">
                                         <div className={`h-4 w-4 rounded-full ${room.color}`} />
                                         <span>{room.status}</span>
@@ -99,19 +116,19 @@ export function Dashboard() {
                 {/* Recent Reservations */}
                 <Card className="shadow-lg">
                     <CardHeader>
-                        <CardTitle className="text-indigo-600">Recent Reservations</CardTitle>
+                        <CardTitle className="text-primary">Recent Reservations</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-3">
                             {recentReservations.map((reservation) => (
                                 <div
                                     key={reservation.id}
-                                    className="flex items-center justify-between rounded-lg border border-border bg-accent/10 p-3 transition-all hover:shadow-md"
+                                    className="flex items-center justify-between rounded-lg border border-border bg-accent/20 p-3 transition-all hover:shadow-md"
                                 >
                                     <div className="space-y-1">
                                         <div className="flex items-center gap-2">
                                             <span>{reservation.guest}</span>
-                                            <Badge variant="outline" className="border-indigo-300 bg-indigo-50 text-indigo-700 text-xs">
+                                            <Badge variant="outline" className="border-primary/30 bg-primary/10 text-primary text-xs">
                                                 Room {reservation.room}
                                             </Badge>
                                         </div>
@@ -119,11 +136,7 @@ export function Dashboard() {
                                     </div>
                                     <Badge
                                         className={
-                                            reservation.status === 'checked-in'
-                                                ? 'bg-emerald-500 text-white'
-                                                : reservation.status === 'confirmed'
-                                                    ? 'bg-amber-500 text-white'
-                                                    : 'bg-slate-400 text-white'
+                                            getStatusBadge(reservation.status)
                                         }
                                     >
                                         {reservation.status}

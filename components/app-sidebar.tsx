@@ -10,6 +10,8 @@ import {
   LayoutDashboard,
   Settings2,
   SquareTerminal,
+  ClipboardList,
+  Calendar
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -47,6 +49,16 @@ const navMain = [
     title: "Dashboard",
     url: "/dashboard",
     icon: LayoutDashboard,
+  },
+  {
+    title: "Reservations",
+    url: "/reservations",
+    icon: ClipboardList,
+  },
+  {
+    title: "Front Desk",
+    url: "/frontdesk",
+    icon: Calendar,
   },
   {
     title: "Playground",
@@ -106,15 +118,15 @@ export function AppSidebar({
 }: React.ComponentProps<typeof Sidebar> & { user?: AppSidebarUser }) {
   const displayUser = user
     ? {
-        name: user.user_metadata?.name || user.email,
-        email: user.email,
-        avatar: user.user_metadata?.avatar_url || "/avatars/shadcn.jpg",
-      }
+      name: user.user_metadata?.name || user.email,
+      email: user.email,
+      avatar: user.user_metadata?.avatar_url || "/avatars/shadcn.jpg",
+    }
     : {
-        name: "shadcn",
-        email: "m@example.com",
-        avatar: "/avatars/shadcn.jpg",
-      };
+      name: "shadcn",
+      email: "m@example.com",
+      avatar: "/avatars/shadcn.jpg",
+    };
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
