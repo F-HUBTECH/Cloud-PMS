@@ -3,15 +3,16 @@
 import * as React from "react";
 import {
   AudioWaveform,
-  BookOpen,
+  BrushCleaning,
   Bot,
   Command,
   GalleryVerticalEnd,
   LayoutDashboard,
   Settings2,
-  SquareTerminal,
   ClipboardList,
-  Calendar
+  Calendar,
+  DollarSign,
+  ChartColumn
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -61,41 +62,39 @@ const navMain = [
     icon: Calendar,
   },
   {
-    title: "Playground",
+    title: "Billing",
     url: "#",
-    icon: SquareTerminal,
-    isActive: true,
-    items: [
-      { title: "History", url: "/history" },
-      { title: "Starred", url: "#" },
-      { title: "Settings", url: "#" },
-    ],
+    icon: DollarSign,
   },
   {
-    title: "Models",
+    title: "Housekeeping",
+    url: "#",
+    icon: BrushCleaning,
+  },
+  {
+    title: "End of Day",
     url: "#",
     icon: Bot,
-    items: [
-      { title: "Genesis", url: "#" },
-      { title: "Explorer", url: "#" },
-      { title: "Quantum", url: "#" },
-    ],
   },
   {
-    title: "Documentation",
+    title: "Reports",
     url: "#",
-    icon: BookOpen,
+    icon: ChartColumn,
     items: [
-      { title: "Introduction", url: "#" },
-      { title: "Get Started", url: "#" },
-      { title: "Tutorials", url: "#" },
-      { title: "Changelog", url: "#" },
+      { title: "Overview", url: "#" },
+      { title: "Forecast", url: "#" },
     ],
   },
   {
-    title: "Setting",
-    url: "/setting",
+    title: "Configuration",
+    url: "#",
     icon: Settings2,
+    isActive: true,
+    items: [
+      { title: "Settings", url: "/settings" },
+      { title: "Hotel", url: "#" },
+      { title: "Room", url: "#" },
+    ],
   },
 ];
 // const projects = [
