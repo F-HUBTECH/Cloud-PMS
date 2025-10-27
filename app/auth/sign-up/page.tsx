@@ -1,5 +1,5 @@
 
-import { GalleryVerticalEnd } from "lucide-react"
+import { Hotel } from "lucide-react"
 
 import { SignUpForm } from "@/components/sign-up-form";
 
@@ -17,9 +17,9 @@ export default function Page() {
                 <div className="flex justify-center gap-2 md:justify-start">
           <a href="#" className="flex items-center gap-2 font-medium">
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <GalleryVerticalEnd className="size-4" />
+              <Hotel className="size-4" />
             </div>
-            Acme Inc.
+            Cloud PMS.
           </a>
         </div>
         <div className="flex flex-1 items-center justify-center">
