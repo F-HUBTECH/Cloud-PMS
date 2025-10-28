@@ -62,13 +62,13 @@ const navMain = [
     icon: Calendar,
   },
   {
-    title: "Billing",
-    url: "#",
+    title: "Folio & Billing",
+    url: "/folio",
     icon: DollarSign,
   },
   {
     title: "Housekeeping",
-    url: "#",
+    url: "/housekeeping",
     icon: BrushCleaning,
   },
   {
@@ -82,7 +82,7 @@ const navMain = [
     icon: ChartColumn,
     items: [
       { title: "Overview", url: "#" },
-      { title: "Forecast", url: "#" },
+      { title: "Forecast", url: "/reports/forecast" },
     ],
   },
   {
