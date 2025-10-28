@@ -17,7 +17,7 @@ import { createClient } from "@/lib/supabase/server";
 // } from "@/components/ui/sidebar";
 // import { ThemeSwitcher } from "@/components/theme-switcher";
 import ProtectedLayout from "@/components/protected-layout";
-import { Dashboard } from "@/components/features/dashboard/Dashboard";
+import { Dashboard } from "@/components/features/dashboard/Dashboard_";
 
 export default async function Page() {
   const supabase = await createClient();
