@@ -3,9 +3,6 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -165,7 +162,7 @@ export function Forecast() {
   ];
 
   // Generate mock availability data
-  const generateAvailability = (total: number, date: string) => {
+  const generateAvailability = (total: number) => {
     const baseOccupancy = Math.random() * 0.6 + 0.2; // 20-80% occupancy
     const occupied = Math.floor(total * baseOccupancy);
     const available = total - occupied;
@@ -465,7 +462,7 @@ export function Forecast() {
                           </Badge>
                         </TableCell>
                         {availabilityDates.map((date) => {
-                          const available = generateAvailability(roomType.total, date);
+                          const available = generateAvailability(roomType.total);
                           return (
                             <TableCell key={date} className="text-center p-2">
                               <div

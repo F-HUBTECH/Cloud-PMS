@@ -41,15 +41,15 @@ export function LoginForm({
     }
   };
 
-  const handleGoogleLogin = async () => {
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-    if (error) {
-      alert(error.message);
-    }
-  };
+  // const handleGoogleLogin = async () => {
+  //   const supabase = createClient();
+  //   const { error } = await supabase.auth.signInWithOAuth({
+  //     provider: "google",
+  //   });
+  //   if (error) {
+  //     alert(error.message);
+  //   }
+  // };
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}  onSubmit={handleLogin}>

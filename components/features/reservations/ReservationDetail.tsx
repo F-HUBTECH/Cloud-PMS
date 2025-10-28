@@ -1,6 +1,5 @@
 "use client";
 
-
 import React,{ useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -340,7 +339,7 @@ export function ReservationDetail({ reservationId, onBack }: ReservationDetailPr
               ))}
             </TabsList>
 
-            {guests.map((guest, index) => (
+            {guests.map((guest) => (
               <TabsContent key={guest.id} value={guest.id} className="space-y-6 mt-6">
                 {/* Booking Info */}
                 <div className="space-y-4">

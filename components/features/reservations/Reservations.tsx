@@ -27,7 +27,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   DialogFooter,
 } from '@/components/ui/dialog';
 import {
@@ -43,11 +42,9 @@ import {
   Edit, 
   Trash2,
   Users,
-  UserPlus,
   CreditCard,
   Split,
   Copy,
-  X,
   DollarSign,
   Calendar,
   Bed,
@@ -56,8 +53,7 @@ import {
   Phone,
   Building2,
   FileText,
-  CheckCircle2,
-  XCircle
+  CheckCircle2
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { ReservationDetail } from '@/components/features/reservations/ReservationDetail';

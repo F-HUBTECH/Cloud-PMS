@@ -51,10 +51,8 @@ import {
   Mail,
   Phone,
   CreditCard,
-  MapPin,
   Clock,
   CheckCircle2,
-  AlertCircle,
   Settings,
   Home,
   Eye,
@@ -237,33 +235,33 @@ export function FrontDesk() {
   };
 
   // Unified room status color for card header
-  const getRoomStatusColor = (status: string) => {
-    switch (status) {
-      case 'available':
-        return 'from-green-500 to-emerald-500';
-      case 'occupied':
-      case 'in-house':
-        return 'from-blue-500 to-indigo-500';
-      case 'confirmed':
-        return 'from-green-500 to-green-600';
-      case 'pending':
-        return 'from-amber-500 to-orange-500';
-      case 'checked-out':
-        return 'from-slate-400 to-slate-500';
-      case 'cancelled':
-        return 'from-red-500 to-red-600';
-      case 'no-show':
-        return 'from-pink-500 to-pink-600';
-      case 'reserved':
-        return 'from-purple-500 to-purple-600';
-      case 'maintenance':
-        return 'from-amber-500 to-orange-500';
-      case 'dirty':
-        return 'from-slate-400 to-slate-500';
-      default:
-        return 'from-gray-400 to-gray-500';
-    }
-  };
+  // const getRoomStatusColor = (status: string) => {
+  //   switch (status) {
+  //     case 'available':
+  //       return 'from-green-500 to-emerald-500';
+  //     case 'occupied':
+  //     case 'in-house':
+  //       return 'from-blue-500 to-indigo-500';
+  //     case 'confirmed':
+  //       return 'from-green-500 to-green-600';
+  //     case 'pending':
+  //       return 'from-amber-500 to-orange-500';
+  //     case 'checked-out':
+  //       return 'from-slate-400 to-slate-500';
+  //     case 'cancelled':
+  //       return 'from-red-500 to-red-600';
+  //     case 'no-show':
+  //       return 'from-pink-500 to-pink-600';
+  //     case 'reserved':
+  //       return 'from-purple-500 to-purple-600';
+  //     case 'maintenance':
+  //       return 'from-amber-500 to-orange-500';
+  //     case 'dirty':
+  //       return 'from-slate-400 to-slate-500';
+  //     default:
+  //       return 'from-gray-400 to-gray-500';
+  //   }
+  // };
 
   const handleCheckIn = (reservationId: string) => {
     toast.success(`Guest checked in successfully - ${reservationId}`);
@@ -520,7 +518,7 @@ export function FrontDesk() {
                   <CardHeader className="bg-primary/10 border-b border-primary/20">
                     <CardTitle className="text-primary flex items-center gap-2">
                       <UserCheck className="h-5 w-5 text-primary" />
-                      Today's Arrivals
+                      Today&apos;s Arrivals
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-3">
@@ -583,7 +581,7 @@ export function FrontDesk() {
                   <CardHeader className="bg-amber-50 border-b border-amber-200">
                     <CardTitle className="text-amber-600 flex items-center gap-2">
                       <UserX className="h-5 w-5 text-amber-600" />
-                      Today's Departures
+                      Today&apos;s Departures
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-3">
