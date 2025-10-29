@@ -10,7 +10,7 @@ export default async function Page() {
     redirect("/auth/login");
   }
   return (
-    <ProtectedLayout pageTitle="Front Desk">
+    <ProtectedLayout pageTitle="Housekeeping">
       <Housekeeping />
     </ProtectedLayout>
   );
