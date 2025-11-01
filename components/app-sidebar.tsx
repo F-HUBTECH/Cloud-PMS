@@ -91,9 +91,8 @@ const navMain = [
     icon: Settings2,
     isActive: true,
     items: [
-      { title: "Settings", url: "/settings" },
-      { title: "Hotel", url: "#" },
-      { title: "Room", url: "#" },
+      { title: "Room Settings", url: "/settings/room" },
+      { title: "Market Segments", url: "/settings/market" },
     ],
   },
 ];
